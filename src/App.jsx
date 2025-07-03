@@ -3,7 +3,8 @@ import Message from "./components/Message";
 import PromptForm from "./components/PromptForm";
 import Sidebar from "./components/Sidebar";
 import { Menu } from "lucide-react";
-import logo from "./logo.jpeg"; // Add this line to import the logo
+import logo from "/logo.jpeg"; // Add this line to import the logo
+
 const App = () => {
   // Main app state
   const [isLoading, setIsLoading] = useState(false);
@@ -18,6 +19,7 @@ const App = () => {
     const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
     return prefersDark ? "dark" : "light";
   });
+
   const [conversations, setConversations] = useState(() => {
     try {
       // Load conversations from localStorage or use default
@@ -27,23 +29,29 @@ const App = () => {
       return [{ id: "default", title: "New Chat", messages: [] }];
     }
   });
+
   const [activeConversation, setActiveConversation] = useState(() => {
     return localStorage.getItem("activeConversation") || "default";
   });
+
   useEffect(() => {
     localStorage.setItem("activeConversation", activeConversation);
   }, [activeConversation]);
+
   // Save conversations to localStorage
   useEffect(() => {
     localStorage.setItem("conversations", JSON.stringify(conversations));
   }, [conversations]);
+
   // Handle theme changes
   useEffect(() => {
     localStorage.setItem("theme", theme);
     document.documentElement.classList.toggle("dark", theme === "dark");
   }, [theme]);
+
   // Get current active conversation
   const currentConversation = conversations.find((c) => c.id === activeConversation) || conversations[0];
+
   // Scroll to bottom of container
   const scrollToBottom = () => {
     if (messagesContainerRef.current) {
@@ -53,10 +61,12 @@ const App = () => {
       });
     }
   };
+
   // Effect to scroll when messages change
   useEffect(() => {
     scrollToBottom();
   }, [conversations, activeConversation]);
+
   const typingEffect = (text, messageId) => {
     let textElement = document.querySelector(`#${messageId} .text`);
     if (!textElement) return;
@@ -112,6 +122,7 @@ const App = () => {
       }
     }, 40);
   };
+
   // Generate AI response
   const generateResponse = async (conversation, botMessageId) => {
     // Format messages for API
@@ -135,6 +146,7 @@ const App = () => {
       updateBotMessage(botMessageId, error.message, true);
     }
   };
+
   // Update specific bot message
   const updateBotMessage = (botId, content, isError = false) => {
     setConversations((prev) =>

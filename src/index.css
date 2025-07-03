@@ -19,7 +19,7 @@
   --color-border-hr: #364153;
   --color-hover-secondary: #33435B;
   --color-hover-secondary-alt: #415472;
-  --gradient-blue-purple: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
+  --gradient-blue-purple: linear-gradient(135deg, #478af7 0%, #4f05fa 100%);
   --sidebar-open-width: 260px;
   --sidebar-closed-width: 80px;
 }
@@ -29,12 +29,12 @@
   --color-text-primary: #2A2A2A;
   --color-text-secondary: #4A5565;
   --color-text-placeholder: #7F93B7;
-  --color-bg-primary: #F3F7FF;
+  --color-bg-primary: #e4f4ffce;
   --color-bg-secondary: #E3EBF6;
-  --color-bg-sidebar: #E6EDF8;
-  --color-border-hr: #D9DBDD;
-  --color-hover-secondary: #D4DCED;
-  --color-hover-secondary-alt: #C9D4EA;
+  --color-bg-sidebar: #cfe0f3;
+  --color-border-hr: #0652f78f;
+  --color-hover-secondary: #b6c8e9;
+  --color-hover-secondary-alt: #62626362;
 }
 
 .app-container {

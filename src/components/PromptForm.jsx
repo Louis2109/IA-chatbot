@@ -1,5 +1,6 @@
 import { ArrowUp } from "lucide-react";
 import { useState } from "react";
+
 const PromptForm = ({ conversations, setConversations, activeConversation, generateResponse, isLoading, setIsLoading }) => {
     const [promptText, setPromptText] = useState("");
     const handleSubmit = (e) => {
@@ -42,6 +43,7 @@ const PromptForm = ({ conversations, setConversations, activeConversation, gener
             generateResponse(apiConversation, botMessageId);
         }, 300);
     };
+
     return (
         <form className="prompt-form" onSubmit={handleSubmit}>
             <input placeholder="Message Louis..." className="prompt-input" value={promptText} onChange={(e) => setPromptText(e.target.value)} required />

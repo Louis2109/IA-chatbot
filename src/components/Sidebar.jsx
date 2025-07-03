@@ -1,4 +1,5 @@
 import { Menu, Moon, Plus, Sparkles, Sun, Trash2 } from "lucide-react";
+
 const Sidebar = ({ isSidebarOpen, setIsSidebarOpen, conversations, setConversations, activeConversation, setActiveConversation, theme, setTheme }) => {
     // Create new conversation
     const createNewConversation = () => {
@@ -14,6 +15,7 @@ const Sidebar = ({ isSidebarOpen, setIsSidebarOpen, conversations, setConversati
         setConversations([{ id: newId, title: "New Chat", messages: [] }, ...conversations]);
         setActiveConversation(newId);
     };
+
     // Delete conversation and handle active selection
     const deleteConversation = (id, e) => {
         e.stopPropagation(); // Prevent triggering conversation selection
@@ -35,6 +37,7 @@ const Sidebar = ({ isSidebarOpen, setIsSidebarOpen, conversations, setConversati
             }
         }
     };
+
     return (
         <aside className={`sidebar ${isSidebarOpen ? "open" : "closed"}`}>
             {/* Sidebar Header */}
