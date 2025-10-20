@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+// import { buildPersonaPrefix, sanitizeProviderMentions } from "./persona";
 import Message from "./components/Message";
 import PromptForm from "./components/PromptForm";
 import Sidebar from "./components/Sidebar";
@@ -10,14 +11,10 @@ const App = () => {
   const [isLoading, setIsLoading] = useState(false);
   const typingInterval = useRef(null);
   const messagesContainerRef = useRef(null);
-  const [isSidebarOpen, setIsSidebarOpen] = useState(
-    () => window.innerWidth > 768
-  );
+  const [isSidebarOpen, setIsSidebarOpen] = useState(() => window.innerWidth > 768 );
   const [theme, setTheme] = useState(() => {
     const savedTheme = localStorage.getItem("theme");
-    if (savedTheme) {
-      return savedTheme;
-    }
+    if (savedTheme)  return savedTheme;
     const prefersDark = window.matchMedia(
       "(prefers-color-scheme: dark)"
     ).matches;
