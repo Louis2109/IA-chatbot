@@ -144,8 +144,8 @@ const App = () => {
   // Generate AI response via backend proxy
   const generateResponse = async (conversation, botMessageId) => {
     try {
-      // Appeler le backend au lieu de l'API directement
-      const res = await fetch("http://localhost:3001/api/chat", {
+      // Appeler le backend (URL Render) 
+      const res = await fetch("https://ia-chatbot-jxs2.onrender.com", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ messages: conversation.messages }),
