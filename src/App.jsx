@@ -145,7 +145,7 @@ const App = () => {
   const generateResponse = async (conversation, botMessageId) => {
     try {
       // Appeler le backend (URL Render) 
-      const res = await fetch("https://ia-chatbot-jxs2.onrender.com", {
+      const res = await fetch("https://ia-chatbot-jxs2.onrender.com/api/chat", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ messages: conversation.messages }),
