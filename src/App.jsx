@@ -141,29 +141,39 @@ const App = () => {
     }, 40);
   };
 
-  // Generate AI response
+  // Generate AI response via backend proxy
   const generateResponse = async (conversation, botMessageId) => {
-    // Format messages for API
-    const formattedMessages = conversation.messages?.map((msg) => ({
-      role: msg.role === "bot" ? "model" : msg.role,
-      parts: [{ text: msg.content }],
-    }));
     try {
-      const res = await fetch(import.meta.env.VITE_API_URL, {
+      // Appeler le backend au lieu de l'API directement
+      const res = await fetch("http://localhost:3001/api/chat", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ contents: formattedMessages }),
+        body: JSON.stringify({ messages: conversation.messages }),
       });
+
       const data = await res.json();
-      if (!res.ok) throw new Error(data.error.message);
+
+      // Gérer les erreurs HTTP
+      if (!res.ok) {
+        throw new Error(data.message || data.error || "Erreur API");
+      }
+
       // Clean up response formatting
-      const responseText = data.candidates[0].content.parts[0].text
+      const responseText = data.response
         .replace(/\*\*([^*]+)\*\*/g, "$1")
         .trim();
+
       typingEffect(responseText, botMessageId);
     } catch (error) {
       setIsLoading(false);
-      updateBotMessage(botMessageId, error.message, true);
+      
+      // Message d'erreur friendly
+      let errorMessage = error.message;
+      if (error.message.includes("Failed to fetch")) {
+        errorMessage = "Erreur de connexion au backend. Assurez-vous que npm run dev est lancé sur le backend.";
+      }
+      
+      updateBotMessage(botMessageId, errorMessage, true);
     }
   };
 

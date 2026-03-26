@@ -50,6 +50,15 @@ async function askQuestion() {
         askQuestion();
       } catch (error) {
         console.error("❌ Erreur API :", error.message);
+        
+        // Vérifier s'il s'agit d'une erreur de quota. Ce bloc est a supprimer une fois que l'utilisateur a généré une nouvelle clé API.
+        if (error.message.includes("429") || error.message.includes("quota")) {
+          console.error("\n⚠️  SOLUTION: Générer une nouvelle clé API sur https://aistudio.google.com/app/apikey");
+          console.error("🔑 Puis mettre à jour GEMINI_API_KEY dans .env\n");
+          rl.close();
+          return;
+        }
+        
         askQuestion();
       }
     }

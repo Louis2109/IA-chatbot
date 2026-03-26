@@ -72,11 +72,9 @@
 ### Advanced Features (Différenciation)
 - 🔐 **Authentication** : Login/signup avec JWT ou OAuth
 - 📝 **Markdown rendering** : Support code, listes, etc.
-- 🔄 **Conversation sharing** : Exporter/partager des chats
 - 📱 **Responsive design** : Mobile-first approach
 - 🎯 **Personas/Roles** : Différents modes (assistant, code-doctor, etc.)
 - 💾 **File uploads** : Analyse de PDFs, images
-- 🔍 **Search history** : Chercher dans les anciens messages
 - ⌨️ **Keyboard shortcuts** : Ctrl+K pour commandes, etc.
 - 🌍 **Languague support** : Multi-langue
 
